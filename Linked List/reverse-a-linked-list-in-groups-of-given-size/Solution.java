@@ -17,38 +17,35 @@ class Node
 class Solution
 {
     public static Node reverse(Node node, int k){
-        if(k==1){
-            return node;
+        int length=0;
+        Node temp = node;
+        while(temp!=null){
+            temp = temp.next;
+            length++;
         }
-        Node resultHead = node;
-        Node prevSublistOrigHead = null;
-        Node currSublistOrigHead = null;
         
         Node curr = node;
-        int count=1;
-        Node nextSublistOrigHead = curr;
+        Node prevOldHead = null;
+        Node res = null;
         
-        while(nextSublistOrigHead!=null){
-            prevSublistOrigHead = currSublistOrigHead;
-            currSublistOrigHead = nextSublistOrigHead;
-            while(true){
-                count++;
-                curr = count%k==1?nextSublistOrigHead:curr.next;
-                if(count%k==0 || curr.next==null){
-                    nextSublistOrigHead = curr.next;
+        for(int i=1; i<=length; i+=k){
+            Node head = curr;
+            for(int j=i;; j++){
+                if((j==i+k-1) || (j==length)){
+                    Node tempHead = curr.next;
                     curr.next = null;
-                    Node currSublistNewHead = reverseGeneric(currSublistOrigHead);
-                    if (prevSublistOrigHead!=null){
-                        prevSublistOrigHead.next = currSublistNewHead;
-                    }
-                    if(count==k){
-                        resultHead = currSublistNewHead;
-                    }
+                    Node currNewHead = reverseGeneric(head);
+                    if(prevOldHead!=null) prevOldHead.next = currNewHead;
+                    prevOldHead = head;
+                    if(j==k) res = currNewHead;
+                    curr = tempHead;
                     break;
                 }
+                curr = curr.next;
             }
         }
-        return resultHead;
+        
+        return res;
     }
     
     private static Node reverseGeneric(Node node){

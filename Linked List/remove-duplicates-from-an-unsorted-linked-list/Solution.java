@@ -20,9 +20,8 @@ class Solution
         
         Set<Integer> nums = new HashSet<>();
         
-        nums.add(head.data);
-        Node prev = head;
-        Node curr = head.next;
+        Node curr = head;
+        Node prev = null;
         
         while(curr!=null){
             if(nums.contains(curr.data)){

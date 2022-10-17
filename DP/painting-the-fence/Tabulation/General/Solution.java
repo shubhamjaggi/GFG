@@ -24,16 +24,18 @@ class Solution
         //diff(n, k) = f(n-1, k)*(k-1)
         //f(n, k) = f(n-2, k)*(k-1) + f(n-1, k)*(k-1)
         
-        long[] dp = new long[n+1];
-        Arrays.fill(dp, -1L);
-        return ans(n, k, dp);
+        return ans(n, k);
     }
     
-    private long ans(int n, int k, long[] dp){
-        if(n==1) return k;
-        if(n==2) return add(k, mul(k, k-1));
-        if(dp[n]!=-1) return dp[n];
-        return dp[n] = add(mul(ans(n-2, k, dp), k-1), mul(ans(n-1, k, dp), k-1));
+    private long ans(int n, int k){
+        long[] dp = new long[n+1];
+        dp[1] = k;
+        if(n==1) return dp[1];
+        dp[2] = add(k, mul(k, k-1));
+        for(int i=3; i<=n; i++){
+            dp[i] = add(mul(dp[i-2], k-1), mul(dp[i-1], k-1));
+        }
+        return dp[n];
     }
     
 }

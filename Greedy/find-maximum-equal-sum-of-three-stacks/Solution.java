@@ -9,9 +9,9 @@ class Solution {
         while((sum1!=sum2 || sum2!=sum3)){
             if (sum1==0 || sum2==0 || sum3==0) return 0;
             int minSum = Math.min(Math.min(sum1, sum2), sum3);
-            while(minSum<sum1 && i<=N1-1) sum1-=S1[i++];
-            while(minSum<sum2 && j<=N2-1) sum2-=S2[j++];
-            while(minSum<sum3 && k<=N3-1) sum3-=S3[k++];
+            while(minSum<sum1) sum1-=S1[i++];
+            while(minSum<sum2) sum2-=S2[j++];
+            while(minSum<sum3) sum3-=S3[k++];
         }
         
         return sum1;

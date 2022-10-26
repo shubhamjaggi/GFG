@@ -6,7 +6,7 @@ class Solution {
         int sum3 = Arrays.stream(S3).sum();
         int i=0, j=0, k=0;
         
-        while((sum1!=sum2 || sum2!=sum3)){
+        while(sum1!=sum2 || sum2!=sum3){
             if (sum1==0 || sum2==0 || sum3==0) return 0;
             int minSum = Math.min(Math.min(sum1, sum2), sum3);
             while(minSum<sum1) sum1-=S1[i++];

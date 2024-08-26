@@ -12,7 +12,7 @@ class Solution
         }
         
         for(int i = 0; i < zeroCount; i++) a[i] = 0;
-        for(int i = 0; i < oneCount; i++) a[zeroCount + i] = 1;
-        for(int i = 0; i < twoCount; i++) a[zeroCount + oneCount + i] = 2;
+        for(int i = zeroCount; i < n - twoCount; i++) a[i] = 1;
+        for(int i = n - twoCount; i < n; i++) a[i] = 2;
     }
 }

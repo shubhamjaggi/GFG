@@ -5,7 +5,9 @@ class Solution {
         boolean[] vis = new boolean[V];
         boolean[] rec = new boolean[V];
         for(int i=0; i<V; i++) {
-            if (dfs(i, adj, vis, rec)) return true;
+            if(!vis[i]) {
+                if (dfs(i, adj, vis, rec)) return true;
+            }
         }
         return false;
     }
